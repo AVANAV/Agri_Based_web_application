@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Your Orders - AgriMarket{% endblock %}
+
+{% block content %}
+<div class="orders-container">
+    <h2>My Sales Orders</h2>
+    <p>Track orders from companies and wholesalers buying your products</p>
+
+    {% if orders %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Buyer</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Order Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order._id }}</td>
+                <td>{{ order.buyer_id }}</td>
+                <td>{{ order.product_id }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>${{ order.total_price }}</td>
+                <td><span class="badge badge-{{ order.status }}">{{ order.status }}</span></td>
+                <td>{{ order.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No orders yet. Your products will appear here once someone purchases them!</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Disease Detection - AgriMarket{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Crop Disease Detection</h2>
+    <p>Get information about common diseases and their remedies</p>
+
+    <form method="POST" class="disease-form">
+        <div class="form-group">
+            <label for="crop_type">Select Crop Type:</label>
+            <select id="crop_type" name="crop_type" required>
+                <option value="">-- Select Crop --</option>
+                <option value="rice">Rice</option>
+                <option value="wheat">Wheat</option>
+                <option value="corn">Corn/Maize</option>
+                <option value="tomato">Tomato</option>
+                <option value="potato">Potato</option>
+                <option value="sugarcane">Sugarcane</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="disease_description">Symptoms/Description:</label>
+            <textarea id="disease_description" name="disease_description" rows="4" placeholder="Describe the symptoms you see on your crops..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Check Disease</button>
+    </form>
+
+    <div class="disease-info">
+        <h3>Common Crop Diseases</h3>
+        <div class="disease-list">
+            <div class="disease-item">
+                <h4>Rice - Leaf Blast</h4>
+                <p><strong>Symptoms:</strong> Diamond-shaped lesions on leaves</p>
+                <p><strong>Remedy:</strong> Use resistant varieties, improve drainage, apply fungicides</p>
+            </div>
+
+            <div class="disease-item">
+                <h4>Wheat - Powdery Mildew</h4>
+                <p><strong>Symptoms:</strong> White powder on leaves</p>
+                <p><strong>Remedy:</strong> Improve air circulation, apply sulfur-based fungicides</p>
+            </div>
+
+            <div class="disease-item">
+                <h4>Corn - Common Rust</h4>
+                <p><strong>Symptoms:</strong> Red-brown pustules on leaves</p>
+                <p><strong>Remedy:</strong> Plant resistant varieties, apply fungicides early</p>
+            </div>
+
+            <div class="disease-item">
+                <h4>Tomato - Early Blight</h4>
+                <p><strong>Symptoms:</strong> Brown spots with concentric rings</p>
+                <p><strong>Remedy:</strong> Remove infected leaves, apply copper fungicides</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

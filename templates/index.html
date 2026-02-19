@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Home - AgriMarket{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-content">
+        <h1>Welcome to AgriMarket</h1>
+        <p>The Direct Agricultural Marketplace - Connecting Farmers, Industries & Wholesalers</p>
+        {% if not session.user_id %}
+            <div class="cta-buttons">
+                <a href="/register" class="btn btn-primary">Get Started</a>
+                <a href="/login" class="btn btn-secondary">Login</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<section class="features">
+    <h2>Our Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>For Farmers</h3>
+            <ul>
+                <li>Crop Yield Prediction</li>
+                <li>Disease Detection</li>
+                <li>Insurance Plans</li>
+                <li>Sell Seeds & Fertilizers</li>
+                <li>Direct Market Access</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h3>For Industries</h3>
+            <ul>
+                <li>Buy Raw Materials</li>
+                <li>Direct Farmer Connect</li>
+                <li>No Middlemen</li>
+                <li>Sell to Wholesalers</li>
+                <li>Quality Assurance</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h3>For Wholesalers</h3>
+            <ul>
+                <li>Buy Processed Goods</li>
+                <li>Direct from Companies</li>
+                <li>Bulk Discounts</li>
+                <li>Order Management</li>
+                <li>Supply Chain Tracking</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="stat-item">
+        <h3>10,000+</h3>
+        <p>Active Farmers</p>
+    </div>
+    <div class="stat-item">
+        <h3>500+</h3>
+        <p>Companies</p>
+    </div>
+    <div class="stat-item">
+        <h3>200+</h3>
+        <p>Wholesalers</p>
+    </div>
+</section>
+{% endblock %}
+    </form>
+</body>
+</html>

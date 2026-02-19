@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Crop Prediction - AgriMarket{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Crop Yield Prediction</h2>
+    <p>Enter environmental data to predict crop yield</p>
+
+    <form method="POST" class="prediction-form">
+        <div class="form-group">
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" id="temperature" name="temperature" step="0.1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" id="humidity" name="humidity" min="0" max="100" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rainfall">Rainfall (mm):</label>
+            <input type="number" id="rainfall" name="rainfall" step="0.1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ph">Soil pH:</label>
+            <input type="number" id="ph" name="ph" step="0.1" min="0" max="14" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nitrogen">Nitrogen (kg/ha):</label>
+            <input type="number" id="nitrogen" name="nitrogen" step="0.1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phosphorus">Phosphorus (kg/ha):</label>
+            <input type="number" id="phosphorus" name="phosphorus" step="0.1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="potassium">Potassium (kg/ha):</label>
+            <input type="number" id="potassium" name="potassium" step="0.1" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Predict Yield</button>
+    </form>
+
+    {% if prediction %}
+    <div class="prediction-result">
+        <h3>Prediction Result</h3>
+        <p><strong>Estimated Yield:</strong> {{ prediction }} units/hectare</p>
+        <p class="note">This is an estimate based on the provided environmental factors.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

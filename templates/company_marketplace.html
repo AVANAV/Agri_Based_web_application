@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Company Marketplace - AgriMarket{% endblock %}
+
+{% block content %}
+<div class="marketplace-container">
+    <h2>Raw Materials Marketplace</h2>
+    <p>Browse and purchase directly from farmers</p>
+
+    {% if products %}
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <h4>{{ product.name }}</h4>
+            <p>{{ product.description }}</p>
+            <div class="product-details">
+                <p><strong>Category:</strong> {{ product.category }}</p>
+                <p><strong>Price:</strong> <span class="price">${{ product.price }}/unit</span></p>
+                <p><strong>Available:</strong> {{ product.quantity }} units</p>
+            </div>
+            <form method="POST" action="/company/purchase" class="purchase-form">
+                <input type="hidden" name="product_id" value="{{ product._id }}">
+                <div class="form-group">
+                    <input type="number" name="quantity" min="1" max="{{ product.quantity }}" value="1" required>
+                </div>
+                {% if product.quantity > 0 %}
+                <button type="submit" class="btn btn-primary">Order Now</button>
+                {% else %}
+                <button type="button" class="btn btn-disabled" disabled>Out of Stock</button>
+                {% endif %}
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-data">No products available in the marketplace yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

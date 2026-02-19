@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Farmer Dashboard - AgriMarket{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Farmer Dashboard</h1>
+    <p>Welcome, {{ session.user_name }}!</p>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <h3>Crop Prediction</h3>
+            <p>Predict crop yield based on environmental factors</p>
+            <a href="/farmer/predict_crop" class="btn btn-primary">Go to Prediction</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Disease Detection</h3>
+            <p>Identify and manage crop diseases</p>
+            <a href="/farmer/disease_detection" class="btn btn-primary">Check Diseases</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Insurance Plans</h3>
+            <p>Protect your crops with insurance coverage</p>
+            <a href="/farmer/insurance" class="btn btn-primary">View Insurance</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Sell Seeds & Fertilizers</h3>
+            <p>Sell quality seeds and fertilizers to industries</p>
+            <a href="/farmer/seeds_fertilizers" class="btn btn-primary">Sell Products</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Sell Products</h3>
+            <p>Sell your agricultural products to companies</p>
+            <a href="/farmer/products" class="btn btn-primary">Sell Farm Products</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>View Orders</h3>
+            <p>Manage your orders and sales</p>
+            <a href="/farmer/orders" class="btn btn-primary">View Orders</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

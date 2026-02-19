@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Insurance Plans - AgriMarket{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Crop Insurance Plans</h2>
+    <p>Protect your crops with affordable insurance coverage</p>
+
+    <form method="POST" class="insurance-form">
+        <div class="form-group">
+            <label for="crop_type">Crop Type:</label>
+            <select id="crop_type" name="crop_type" required>
+                <option value="">-- Select Crop --</option>
+                <option value="rice">Rice</option>
+                <option value="wheat">Wheat</option>
+                <option value="corn">Corn/Maize</option>
+                <option value="cotton">Cotton</option>
+                <option value="sugarcane">Sugarcane</option>
+                <option value="vegetables">Vegetables</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="coverage_amount">Coverage Amount ($):</label>
+            <input type="number" id="coverage_amount" name="coverage_amount" min="1000" step="100" required>
+        </div>
+
+        <div class="info-box">
+            <p><strong>Premium:</strong> 5% of coverage amount (calculated automatically)</p>
+            <p><strong>Coverage Duration:</strong> 1 Year</p>
+            <p><strong>Claim Process:</strong> Quick and hassle-free</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Policy</button>
+    </form>
+
+    <h3>Your Insurance Policies</h3>
+    {% if policies %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Crop</th>
+                <th>Coverage Amount</th>
+                <th>Premium</th>
+                <th>Status</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for policy in policies %}
+            <tr>
+                <td>{{ policy.crop_type }}</td>
+                <td>${{ policy.coverage_amount }}</td>
+                <td>${{ policy.premium }}</td>
+                <td><span class="badge badge-{{ policy.status }}">{{ policy.status }}</span></td>
+                <td>{{ policy.created_at.strftime('%Y-%m-%d') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No insurance policies yet. Create one above!</p>
+    {% endif %}
+</div>
+{% endblock %}

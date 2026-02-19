@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Products - AgriMarket{% endblock %}
+
+{% block content %}
+<div class="products-container">
+    <h2>Sell Farm Products</h2>
+
+    <div class="add-product-section">
+        <h3>List New Product</h3>
+        <form method="POST" class="product-form">
+            <div class="form-group">
+                <label for="name">Product Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Product Category:</label>
+                <select id="category" name="category" required>
+                    <option value="">-- Select Category --</option>
+                    <option value="vegetables">Vegetables</option>
+                    <option value="fruits">Fruits</option>
+                    <option value="grains">Grains</option>
+                    <option value="pulses">Pulses</option>
+                    <option value="spices">Spices</option>
+                    <option value="dairy">Dairy</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price per Unit ($):</label>
+                <input type="number" id="price" name="price" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity Available (kg):</label>
+                <input type="number" id="quantity" name="quantity" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">List Product</button>
+        </form>
+    </div>
+
+    <h3>Your Products</h3>
+    {% if products %}
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <h4>{{ product.name }}</h4>
+            <p>{{ product.description }}</p>
+            <div class="product-details">
+                <p><strong>Category:</strong> {{ product.category }}</p>
+                <p><strong>Price:</strong> ${{ product.price }}/unit</p>
+                <p><strong>Available:</strong> {{ product.quantity }} kg</p>
+                <p><strong>Status:</strong> {% if product.quantity > 0 %}<span class="badge badge-success">In Stock</span>{% else %}<span class="badge badge-danger">Out of Stock</span>{% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-data">No products listed yet. List one above!</p>
+    {% endif %}
+</div>
+{% endblock %}

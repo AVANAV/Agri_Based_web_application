@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Wholesaler Marketplace - AgriMarket{% endblock %}
+
+{% block content %}
+<div class="marketplace-container">
+    <h2>Processed Goods Marketplace</h2>
+    <p>Browse products from companies and industries</p>
+
+    {% if products %}
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <h4>{{ product.name }}</h4>
+            <p>{{ product.description }}</p>
+            <div class="product-details">
+                <p><strong>Price:</strong> <span class="price">${{ product.price }}/unit</span></p>
+                <p><strong>Available:</strong> {{ product.quantity }} units</p>
+                <p><strong>Min Order:</strong> 10 units</p>
+            </div>
+            <form method="POST" action="/wholesaler/purchase" class="purchase-form">
+                <input type="hidden" name="product_id" value="{{ product._id }}">
+                <div class="form-group">
+                    <input type="number" name="quantity" min="10" max="{{ product.quantity }}" value="10" step="5" required>
+                </div>
+                {% if product.quantity >= 10 %}
+                <button type="submit" class="btn btn-primary">Order Now</button>
+                {% else %}
+                <button type="button" class="btn btn-disabled" disabled>Not Enough Stock</button>
+                {% endif %}
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-data">No products available in the marketplace yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
