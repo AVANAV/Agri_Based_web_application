@@ -322,7 +322,7 @@ app.run(debug=True, host="localhost", port=5001)
 ```
 
 ### Template Not Found
-- Ensure `templetes/` folder name is correct (note the typo from original)
+- Ensure `templates/` folder name is correct (note the typo from original)
 - Or rename to `templates/` and update Flask configuration:
 ```python
 app = Flask(__name__, template_folder='templates')
