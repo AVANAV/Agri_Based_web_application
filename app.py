@@ -12,8 +12,6 @@ import os
 app = Flask(__name__)
 app.secret_key = "your_secret_key_change_this_in_production"
 
-# ==================== AUTHENTICATION ====================
-
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -27,7 +25,6 @@ def register():
         confirm_password = request.form.get("confirm_password")
         role = request.form.get("role")
 
-        # Validation
         if not all([name, email, password, confirm_password, role]):
             flash("All fields are required", "error")
             return redirect("/register")
@@ -36,12 +33,12 @@ def register():
             flash("Passwords do not match", "error")
             return redirect("/register")
 
-        # Check if user exists
+       
         if find_user_by_email(email):
             flash("Email already registered", "error")
             return redirect("/register")
 
-        # Create user
+      
         try:
             create_user(name, email, password, role)
             flash("Registration successful! Please login.", "success")
